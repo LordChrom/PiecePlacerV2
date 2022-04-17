@@ -20,15 +20,15 @@ public class Main {
     public enum type{l,d,L,j,hp,sc,bc,dl,u,ln,sq,pl}
 
     public static void main(String[] args) {
-        timeSolves(100000 );
+        timeSolves(1000000 );
     }
 
     public static void timeSolves(int count){
         System.out.println("doing "+count+" Solves");
         long time = System.currentTimeMillis();
         for (int i = 0; i < count; i++) {
-//            Solver.solve();
-            solveInitial(b480,p480);
+            Solver.solve();
+//            solveInitial(b480,p480);
         }
         long timeTaken = System.currentTimeMillis()-time;
         System.out.println("completed in " + timeTaken+"ms, with an average of "+(double)timeTaken/count+"ms");
@@ -37,10 +37,10 @@ public class Main {
 
     private static void solveInitial(long board, type[] pieces){
         LinkList head = new LinkList();
-        iloop: for (int i = 0; i < typeCount; i++) {
+        topLoop: for (int i = 0; i < typeCount; i++) {
             for (type t : pieces) {
                 if (t.ordinal() == i)
-                    continue iloop;
+                    continue topLoop;
             }
             LinkList nu = new LinkList();
             nu.type=i;

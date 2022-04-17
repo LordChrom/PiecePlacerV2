@@ -58,7 +58,7 @@ public class Dealer {
         return out;
     }
 
-    public static LinkList makeAvailabilityList(){
+    public static LinkList makeAvailabilityList(){ //makes a blank linked list for available pieces
         LinkList head = new LinkList();
         for (int i = 0; i < typeCount; i++) {
             LinkList nu = new LinkList();
