@@ -1,10 +1,12 @@
 package puzzle;
 
+//stores the data for a particular orientation of a type of piece
 public class Piece {
     long data;
     byte vPos;        //height of bottommost tile in right column (0 indexed)
     byte heightAbove; //height from the bottommost tile in the right column to the highest tile (in any column)
 
+    //
     //    the piece       X marks the origin
     //       █                   █
     //      ███                 ██X

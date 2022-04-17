@@ -1,11 +1,11 @@
 package puzzle;
 
 import java.util.ArrayList;
-
 import static puzzle.Dealer.typeCount;
 
+//tells the things to do the stuff, also times them and prints stuff
 public class Main {
-    public static final char[] flavors = "█▓▒░X+".toCharArray();
+    public static final char[] flavors = "█▓▒░X+".toCharArray(); //array of different characters to use for printing
 
     //boards with starting conditions
     public static final long b477 = 0b1111111111111111100101101000100000000000100000000000100000000000L;
@@ -17,7 +17,7 @@ public class Main {
     public static final long b480 = 0b1111111111111111100100000010100000000000100000000000100000000000L;
     public static final type[] p480 = {type.l,type.j,type.ln};
 
-    public enum type{l,d,L,j,hp,sc,bc,dl,u,ln,sq,pl}
+    public enum type{l,d,L,j,hp,sc,bc,dl,u,ln,sq,pl}//the pieces have names, how nice
 
     public static void main(String[] args) {
         timeSolves(1000000 );
@@ -35,7 +35,7 @@ public class Main {
         printSolution();
     }
 
-    private static void solveInitial(long board, type[] pieces){
+    private static void solveInitial(long board, type[] pieces){ //solves a board with initial conditions
         LinkList head = new LinkList();
         topLoop: for (int i = 0; i < typeCount; i++) {
             for (type t : pieces) {
@@ -51,7 +51,7 @@ public class Main {
     }
 
     private static void printSolution(){printSolution(Solver.solution);}
-    private static void printSolution(ArrayList<Long> solution){
+    private static void printSolution(ArrayList<Long> solution){ //does what it says
         char[][] board = new char[5][11];
         for (int i = 0; i < solution.size(); i++) {
             long l = solution.get(i);
