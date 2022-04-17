@@ -20,7 +20,9 @@ public class Main {
     public enum type{l,d,L,j,hp,sc,bc,dl,u,ln,sq,pl}//the pieces have names, how nice
 
     public static void main(String[] args) {
-        timeSolves(1000000 );
+//        Solver.solve();
+//        solveInitial(b477,p477);
+        timeSolves(10000000);
     }
 
     public static void timeSolves(int count){
@@ -28,7 +30,7 @@ public class Main {
         long time = System.currentTimeMillis();
         for (int i = 0; i < count; i++) {
             Solver.solve();
-//            solveInitial(b480,p480);
+//            solveInitial(b477,p477);
         }
         long timeTaken = System.currentTimeMillis()-time;
         System.out.println("completed in " + timeTaken+"ms, with an average of "+(double)timeTaken/count+"ms");

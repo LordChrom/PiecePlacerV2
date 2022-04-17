@@ -22,8 +22,11 @@ public class Solver {
         if(~board == 0) return true; //'~' inverts the board. ~board being all 0s means the board all 1s, so it's full
 
         while(((~board)&(rightWall<<x))==0) x++; //uses bitwise stuff to find the x position of the rightmost empty col.
+
+        if(((~board)&(rightWall<<(x+1)))==0 && x<10) return false; //if the next row is filled but this one isn't then stop
+
         int y = 0;
-        for(long i = 1L<<x; (i&board)!=0; i=1L<<(x+y*12)) //same thing but find the lowest bit in that col.
+        for(long i = 1L<<x; (i&board)!=0; i=1L<<(x+y*12)) //same finds the lowest bit in the column.
             y++;
 
         LinkList current = avail;
@@ -31,13 +34,13 @@ public class Solver {
         while (true) {
             prev = current;             //linked list stuff to make it so the node we're currently using
             current = current.next;     //      is temporarily removed from the list
-            if(current==null)           //if we reach the end of the list, return false
+            if(current==null)           //if we reach the end of the list, return false, as we have run out of pieces to try
                 return false;           //
             prev.next = current.next;   //
 
             for(Piece p: pieces[current.type]){                   //for every orientation of the current type of piece
                 if ((y + p.heightAbove <= 5) && (y >= p.vPos)) {    //if the piece would fit above the floor and below the ceiling
-                    long shiftedPiece = p.data<<(x+12*(y-p.vPos));   //shift the piece into place
+                    long shiftedPiece = p.data<<(x+12*(y-p.vPos));   //shift the piece into the correct position
                     if ((board & shiftedPiece) == 0)                  //if the piece would fit with the existing tiles
                         if(solve(board | shiftedPiece,avail,x)) {       //try recursively solving resulting board with the piece on it.
                             solution.add(shiftedPiece);
