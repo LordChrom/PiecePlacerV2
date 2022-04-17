@@ -39,7 +39,7 @@ public class Solver {
                 if ((y + p.heightAbove <= 5) && (y >= p.vPos)) {    //if the piece would fit above the floor and below the ceiling
                     long shiftedPiece = p.data<<(x+12*(y-p.vPos));   //shift the piece into place
                     if ((board & shiftedPiece) == 0)                  //if the piece would fit with the existing tiles
-                        if(solve(board | shiftedPiece,avail,x)) {       //try recursively placing solving the resulting board.
+                        if(solve(board | shiftedPiece,avail,x)) {       //try recursively solving resulting board with the piece on it.
                             solution.add(shiftedPiece);
                             return true;
                         }
